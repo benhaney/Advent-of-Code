@@ -1,0 +1,3 @@
+const input = require('fs').readFileSync('input', 'utf8').split('\n').map(x => x.split(' ')).map(([x,y]) => [x.split('').map(y => +y || ({T:10,J:11,Q:12,K:13,A:14})[y]), +y])
+
+console.log([[x => Object.values(x.filter(y => y > 1).reduce((a,b) => Object.assign(a, {[b]: (a[b]||0)+1}), {})).sort((a,b) => b-a).concat([0]).slice(0,2).map((a,i) => i ? a : a + x.filter(y => y == 1).length), ([h1, [k11, k12]], [h2, [k21, k22]]) => (k11 - k21) || (k12 - k22) || h1.map((x,i) => x-h2[i]).find(x => x)]].map(([kind, cmp]) => [input, input.map(([h,b]) => [h.map(x => x == 11 ? 1 : x),b])].map(inp => inp.map(([h,b]) => [h, kind(h), b]).sort(cmp).reduce((a,b,i) => a + (b[2] * (i+1)), 0)))[0].join('\n'))
